@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E4C152FF2A6197EB00240D88 /* Dependency_InjectionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C152FE2A6197EB00240D88 /* Dependency_InjectionApp.swift */; };
-		E4C153012A6197EB00240D88 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C153002A6197EB00240D88 /* ContentView.swift */; };
+		E4C152FF2A6197EB00240D88 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C152FE2A6197EB00240D88 /* AppEntry.swift */; };
+		E4C153012A6197EB00240D88 /* DependencyInjectionBootcamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C153002A6197EB00240D88 /* DependencyInjectionBootcamp.swift */; };
 		E4C153032A6197EC00240D88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4C153022A6197EC00240D88 /* Assets.xcassets */; };
 		E4C153072A6197EC00240D88 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4C153062A6197EC00240D88 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E4C152FB2A6197EB00240D88 /* Dependency Injection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dependency Injection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4C152FE2A6197EB00240D88 /* Dependency_InjectionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency_InjectionApp.swift; sourceTree = "<group>"; };
-		E4C153002A6197EB00240D88 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E4C152FE2A6197EB00240D88 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
+		E4C153002A6197EB00240D88 /* DependencyInjectionBootcamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectionBootcamp.swift; sourceTree = "<group>"; };
 		E4C153022A6197EC00240D88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4C153042A6197EC00240D88 /* Dependency_Injection.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dependency_Injection.entitlements; sourceTree = "<group>"; };
 		E4C153062A6197EC00240D88 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -52,8 +52,8 @@
 		E4C152FD2A6197EB00240D88 /* Dependency Injection */ = {
 			isa = PBXGroup;
 			children = (
-				E4C152FE2A6197EB00240D88 /* Dependency_InjectionApp.swift */,
-				E4C153002A6197EB00240D88 /* ContentView.swift */,
+				E4C152FE2A6197EB00240D88 /* AppEntry.swift */,
+				E4C153002A6197EB00240D88 /* DependencyInjectionBootcamp.swift */,
 				E4C153022A6197EC00240D88 /* Assets.xcassets */,
 				E4C153042A6197EC00240D88 /* Dependency_Injection.entitlements */,
 				E4C153052A6197EC00240D88 /* Preview Content */,
@@ -139,8 +139,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4C153012A6197EB00240D88 /* ContentView.swift in Sources */,
-				E4C152FF2A6197EB00240D88 /* Dependency_InjectionApp.swift in Sources */,
+				E4C153012A6197EB00240D88 /* DependencyInjectionBootcamp.swift in Sources */,
+				E4C152FF2A6197EB00240D88 /* AppEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@ import SwiftUI
 struct Dependency_InjectionApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DependencyInjectionBootcamp()
         }
     }
 }
