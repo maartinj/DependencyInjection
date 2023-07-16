@@ -11,20 +11,26 @@ import Combine
 // PROBLEMS WITH SINGLETONS
 // 1. Singleton's are GLOBAL
 // 2. Can't customize the init!
-// 3. Can't swap out services
+// 3. Can't swap out dependencies
 
 struct PostsModel: Identifiable, Codable {
-    let userID: Int
+    let userId: Int
     let id: Int
     let title: String
     let body: String
 }
 
-class ProductionDataService {
+protocol DataServiceProtocol {
+    func getData() -> AnyPublisher<[PostsModel], Error>
+}
+
+class ProductionDataService: DataServiceProtocol {
     
-    static let instance = ProductionDataService() // Singletion
+    let url: URL
     
-    let url: URL = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+    init(url: URL) {
+        self.url = url
+    }
     
     func getData() -> AnyPublisher<[PostsModel], Error> {
         URLSession.shared.dataTaskPublisher(for: url)
@@ -35,18 +41,38 @@ class ProductionDataService {
     }
 }
 
+class MockDataService: DataServiceProtocol {
+    
+    let testData: [PostsModel] = [
+        PostsModel(userId: 1, id: 1, title: "One", body: "one"),
+        PostsModel(userId: 2, id: 2, title: "Two", body: "two")
+    ]
+    
+    func getData() -> AnyPublisher<[PostsModel], Error> {
+        Just(testData)
+            .tryMap({ $0 })
+            .eraseToAnyPublisher()
+    }
+    
+    
+}
+
 class DependencyInjectionViewModel: ObservableObject {
     
     @Published var dataArray: [PostsModel] = []
     
     var cancellables = Set<AnyCancellable>()
+//    let dataService: ProductionDataService
+    let dataService: DataServiceProtocol
     
-    init() {
+//    init(dataService: ProductionDataService) {
+    init(dataService: DataServiceProtocol) {
+        self.dataService = dataService
         loadPosts()
     }
     
     private func loadPosts() {
-        ProductionDataService.instance.getData()
+        dataService.getData()
             .sink { _ in
                 
             } receiveValue: { [weak self] returnedPosts in
@@ -58,12 +84,16 @@ class DependencyInjectionViewModel: ObservableObject {
 
 struct DependencyInjectionBootcamp: View {
     
-    @StateObject private var vm = DependencyInjectionViewModel()
+    @StateObject private var vm: DependencyInjectionViewModel
+    
+//    init(dataService: ProductionDataService) {
+    init(dataService: DataServiceProtocol) {
+        _vm = StateObject(wrappedValue: DependencyInjectionViewModel(dataService: dataService))
+    }
     
     var body: some View {
         ScrollView {
             VStack {
-                Text("Dupa")
                 ForEach(vm.dataArray) { post in
                     Text(post.title)
                 }
@@ -73,7 +103,11 @@ struct DependencyInjectionBootcamp: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
+//    static let dataService = ProductionDataService(url: URL(string: "https://jsonplaceholder.typicode.com/posts")!)
+    static let dataService = MockDataService()
+    
     static var previews: some View {
-        DependencyInjectionBootcamp()
+        DependencyInjectionBootcamp(dataService: dataService)
     }
 }
