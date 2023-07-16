@@ -5,6 +5,8 @@
 //  Created by Marcin Jędrzejak on 14/07/2023.
 //
 
+// Link: https://www.youtube.com/watch?v=E3x07blYvdE&ab_channel=SwiftfulThinking
+
 import SwiftUI
 import Combine
 
