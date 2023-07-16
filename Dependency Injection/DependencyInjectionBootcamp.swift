@@ -43,18 +43,20 @@ class ProductionDataService: DataServiceProtocol {
 
 class MockDataService: DataServiceProtocol {
     
-    let testData: [PostsModel] = [
-        PostsModel(userId: 1, id: 1, title: "One", body: "one"),
-        PostsModel(userId: 2, id: 2, title: "Two", body: "two")
-    ]
+    let testData: [PostsModel]
+    
+    init(data: [PostsModel]?) {
+        self.testData = data ?? [
+            PostsModel(userId: 1, id: 1, title: "One", body: "one"),
+            PostsModel(userId: 2, id: 2, title: "Two", body: "two")
+        ]
+    }
     
     func getData() -> AnyPublisher<[PostsModel], Error> {
         Just(testData)
             .tryMap({ $0 })
             .eraseToAnyPublisher()
     }
-    
-    
 }
 
 class DependencyInjectionViewModel: ObservableObject {
@@ -105,7 +107,9 @@ struct DependencyInjectionBootcamp: View {
 struct ContentView_Previews: PreviewProvider {
     
 //    static let dataService = ProductionDataService(url: URL(string: "https://jsonplaceholder.typicode.com/posts")!)
-    static let dataService = MockDataService()
+    static let dataService = MockDataService(data: [
+    PostsModel(userId: 1234, id: 1234, title: "test", body: "test")
+    ])
     
     static var previews: some View {
         DependencyInjectionBootcamp(dataService: dataService)
